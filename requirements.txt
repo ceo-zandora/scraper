@@ -3,3 +3,4 @@ lxml
 bs4
 pandas
 requests
+secure-smtplib
