@@ -9,6 +9,10 @@ import logging
 from datetime import datetime
 import concurrent.futures
 from mail import send_mail
+import gspread
+
+gc = gspread.service_account(filename='creds.json')
+sheet = gc.open('Scraper_Database').sheet1
 
 logging.basicConfig(filename='scraper.log', format='%(asctime)s %(message)s',
                     encoding='utf-8', level=logging.WARNING)
@@ -46,6 +50,7 @@ def csvWriter(data,cdate):
         with open('Data/' + cdate + '.csv','a',newline='',errors='ignore') as f:
             wr = csv.writer(f)
             wr.writerow(data)
+            sheet.append_row(data)
             print(f"{row} : Scraped and Saved the details for the business {data[1]}..." + "\n" + "------------->")
 
 def new_user_agent():
