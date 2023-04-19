@@ -8,6 +8,7 @@ import random
 import logging
 from datetime import datetime
 import concurrent.futures
+from mail import send_mail
 
 logging.basicConfig(filename='scraper.log', format='%(asctime)s %(message)s',
                     encoding='utf-8', level=logging.WARNING)
@@ -290,3 +291,5 @@ s = requests.Session()
 
 with concurrent.futures.ThreadPoolExecutor(max_workers=20) as executor:
     executor.map(Scrape, data)
+
+send_mail(cdate)
