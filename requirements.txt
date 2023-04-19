@@ -4,3 +4,4 @@ bs4
 pandas
 requests
 secure-smtplib
+gspread
