@@ -8,10 +8,10 @@ import logging
 import concurrent.futures
 import gspread
 
-gc = gspread.service_account(filename='creds.json')
+gc = gspread.service_account(filename='/root/scraper/creds.json')
 sheet = gc.open('Scraper_Database').sheet1
 
-logging.basicConfig(filename='scraper.log', format='%(asctime)s %(message)s',
+logging.basicConfig(filename='/root/scraper/scraper.log', format='%(asctime)s %(message)s',
                     encoding='utf-8', level=logging.WARNING)
 
 def csvWriter(data):
@@ -37,7 +37,7 @@ blacklistUrls = []
 extensions = ['.png', '.jpg', '.jpeg', '.gif', 'example.com', 'your-domain.com', 'mysite.com', 'company.com']
 
 
-with open('blacklist.txt', 'r', encoding='utf-8') as file:
+with open('/root/scraper/blacklist.txt', 'r', encoding='utf-8') as file:
     blacklistUrls = file.read().splitlines()
 
 def Scrape(detail, retries = 3):
@@ -231,7 +231,7 @@ def Scrape(detail, retries = 3):
 
 
 # Open the CSV file
-with open('data.csv') as csv_file:
+with open('/root/scraper/data.csv') as csv_file:
     # Create a csv reader object
     csv_reader = csv.DictReader(csv_file)
 
